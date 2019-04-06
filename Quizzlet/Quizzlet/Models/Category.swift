@@ -7,8 +7,21 @@
 //
 
 import Foundation
+import UIKit
 
 enum Category: String {
     case SPORTS
     case SCIENCE
+    
+    var value: UIColor {
+        get {
+            switch self {
+            case .SPORTS:
+                return UIColor.red
+            case .SCIENCE:
+                return UIColor.blue
+            }
+        }
+    }
+    
 }
