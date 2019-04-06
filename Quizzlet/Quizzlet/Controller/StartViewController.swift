@@ -15,12 +15,21 @@ class StartViewController: UIViewController {
     @IBOutlet weak var funFactLabel: UILabel!
     @IBOutlet weak var quizzTitle: UILabel!
     @IBOutlet weak var quizzImage: UIImageView!
-    @IBOutlet weak var questionViewContainer: QuestionView!
+    
+    @IBOutlet weak var questionView: QuestionView!
+    
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("tu sam")
+        
+        questionView.questionText.isHidden = false
+        questionView.questionText.text = "jebate, jebate"
+        
+        print(questionView.questionText.text!)
     }
     
 
@@ -71,7 +80,7 @@ class StartViewController: UIViewController {
                     self.quizzImage.backgroundColor = randomQuizz.category?.value
                 }
                 
-                self.addCustomView()
+                
             }
 
         })
@@ -84,17 +93,6 @@ class StartViewController: UIViewController {
         
         return self.quizzes[rand]
     }
-    
-    
-//    func addCustomView() {
-//
-//        if let questionView = Bundle.main.loadNibNamed("QuestionView", owner: nil, options: [:])?.first as? QuestionView {
-//            questionViewContainer.addSubview(questionView)
-//
-//
-//        }
-//        
-//    }
     
 
 }

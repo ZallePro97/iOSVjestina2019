@@ -42,21 +42,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhB-hI-FY7">
-                                <rect key="frame" x="137" y="178" width="100" height="100"/>
+                                <rect key="frame" x="137" y="182" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6hP-8a-qd3" customClass="QuestionView" customModule="Quizzlet" customModuleProvider="target">
-                                <rect key="frame" x="67" y="310" width="240" height="325"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="funFactLabel" destination="bZm-NT-fMd" id="gzF-C4-lc1"/>
-                        <outlet property="questionViewContainer" destination="6hP-8a-qd3" id="lqL-pz-aI3"/>
                         <outlet property="quizzImage" destination="hhB-hI-FY7" id="1oy-zF-qlq"/>
                         <outlet property="quizzTitle" destination="10H-Az-8OL" id="lPe-Lz-i3e"/>
                     </connections>
