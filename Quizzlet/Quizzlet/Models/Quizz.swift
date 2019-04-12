@@ -45,8 +45,17 @@ class Quizz {
                 self.level = level
             }
             
-            if let image = dict["image"] as? UIImage {
-                self.image = image
+            if let imgStr = dict["image"] as? String {
+                print("Tu sam")
+                
+                if let imgUrl = URL(string: imgStr) {
+                    self.getImageForQuizz(imageUrl: imgUrl) { (img) in
+                        self.image = img
+                    }
+                    
+                    print(imgUrl)
+                }
+                
             }
             
             if let QUESTIONS = dict["questions"] as? NSArray {
@@ -60,6 +69,17 @@ class Quizz {
             }
             
             
+        }
+    }
+    
+    func getImageForQuizz(imageUrl: URL, completion: @escaping (UIImage) -> Void) {
+        DispatchQueue.main.async {
+            if let data = try? Data(contentsOf: imageUrl) {
+                if let image = UIImage(data: data) {
+                    print("Dohvacam sliku")
+                    completion(image)
+                }
+            }
         }
     }
     

@@ -21,8 +21,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="906-R7-zIj">
                                 <rect key="frame" x="16" y="43" width="108" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Dohvati"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Get Questions"/>
                                 <connections>
                                     <action selector="getQuizzes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Dl-c3-c3N"/>
                                 </connections>
@@ -50,12 +50,22 @@
                                 <rect key="frame" x="137" y="208" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zty-3Q-Bgs">
+                                <rect key="frame" x="50" y="240" width="41" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MvO-z6-Cxx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="funFactLabel" destination="bZm-NT-fMd" id="gzF-C4-lc1"/>
+                        <outlet property="getQuestionsBtn" destination="906-R7-zIj" id="etg-iW-NXz"/>
                         <outlet property="questionView" destination="s4V-zJ-kA1" id="7j4-8e-Ahw"/>
                         <outlet property="quizzImage" destination="hhB-hI-FY7" id="1oy-zF-qlq"/>
                         <outlet property="quizzTitle" destination="10H-Az-8OL" id="lPe-Lz-i3e"/>

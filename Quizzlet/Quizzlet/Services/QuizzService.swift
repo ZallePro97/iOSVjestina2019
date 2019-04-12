@@ -10,9 +10,9 @@ import Foundation
 
 class QuizzService {
     
-    func fetchQuizzes(urlString: String, completion: @escaping (([Quizz]?) -> Void)) {
+    func fetchQuizzes(completion: @escaping (([Quizz]?) -> Void)) {
         
-        var quizzes: [Quizz] = []
+        let urlString = "https://iosquiz.herokuapp.com/api/quizzes"
         
         if let url = URL(string: urlString) {
             
@@ -27,14 +27,11 @@ class QuizzService {
                         if let decoded = json as? [String: Any] {
                             
                             if let finalData = decoded["quizzes"] as? NSArray {
+                                let quizzes = finalData.compactMap({ (json) -> Quizz? in
+                                    Quizz(json: json)
+                                })
                                 
-                                for item in finalData {
-                                    if let quizz = Quizz(json: item) {
-                                        quizzes.append(quizz)
-                                    }
-                                }
                                 completion(quizzes)
-                                
                             }
                             
                         }
