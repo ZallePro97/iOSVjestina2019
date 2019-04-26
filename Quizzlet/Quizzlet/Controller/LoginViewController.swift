@@ -70,7 +70,10 @@ class LoginViewController: UIViewController {
     @objc func loginButtonTapped(sender: UIButton!) {
         sender.backgroundColor = .black
         
-        print(emailTextField.text!)
+        let loginService = LoginService()
+        loginService.getToken(username: emailTextField.text!, password: passwordTextField.text!) { (json) in
+            print(json)
+        }
         
     }
 
