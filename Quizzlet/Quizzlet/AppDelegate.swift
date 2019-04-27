@@ -19,11 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let token = UserDefaults.standard.string(forKey: "token") {
             print("IMAM TOKEN: \(token)")
             
-            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "StartViewController") as UIViewController
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
+//            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let initialViewController : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "StartViewController") as UIViewController
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+            
+            window = UIWindow(frame: UIScreen.main.bounds)
+            
+            let vc = QuizzListTableViewController()
+            
+            window?.rootViewController = vc
+            
+            window?.makeKeyAndVisible()
             
         } else {
             
