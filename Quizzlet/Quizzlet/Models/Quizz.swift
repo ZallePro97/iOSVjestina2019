@@ -16,6 +16,7 @@ class Quizz {
     var description: String?
     var id: Int?
     var imageStringUrl: String?
+    var image: UIImage?
     var level: Int?
     var questions: [Question] = []
     
@@ -47,6 +48,11 @@ class Quizz {
             
             if let imgStr = dict["image"] as? String {
                 self.imageStringUrl = imgStr
+                
+                self.downloadImage { (image) in
+                    self.image = image
+                }
+                
             } else {
                 print("NEMAM URL SLIKE")
             }
@@ -62,6 +68,21 @@ class Quizz {
             }
             
             
+        }
+    }
+    
+    func downloadImage(completion: ((UIImage) -> Void)) {
+        if let quizzImageStringUrl = self.imageStringUrl {
+            let imageURL = URL(string: quizzImageStringUrl)
+            
+            if let imageURL = imageURL {
+                if let data = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: data) {
+                        completion(image)
+                        print("Slika skinuta!")
+                    }
+                }
+            }
         }
     }
     

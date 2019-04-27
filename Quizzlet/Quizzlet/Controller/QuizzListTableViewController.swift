@@ -18,6 +18,8 @@ class QuizzListTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.register(QuizzTableViewCell.self, forCellReuseIdentifier: "QuizzTableViewCell")
+        
         let quizzService = QuizzService()
         
         quizzService.fetchQuizzes(completion: { (quizzes) in
@@ -41,7 +43,6 @@ class QuizzListTableViewController: UITableViewController {
             
         })
 
-        tableView.register(QuizzTableViewCell.self, forCellReuseIdentifier: "QuizzTableViewCell")
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,7 +60,9 @@ class QuizzListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizzTableViewCell", for: indexPath) as! QuizzTableViewCell
         
-        cell.quizz = quizzes[indexPath.row]
+        cell.imgView.image = quizzes[indexPath.row].image
+        cell.titleLabel.text = quizzes[indexPath.row].title
+        cell.descriptionLabel.text = quizzes[indexPath.row].description
 
         return cell
     }

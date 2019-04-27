@@ -10,65 +10,41 @@ import UIKit
 
 class QuizzTableViewCell: UITableViewCell {
     
-    var quizzImage: UIImage?
-    var quizzTitle: String?
-    var quizzDescription: String?
+    let cntntView = UIView()
     
-    var quizz: Quizz? {
+    let imgView: UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 20, y: 20, width: 0, height: 0))
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = .white
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        didSet {
-            
-            if let quizzImageStringUrl = quizz?.imageStringUrl {
-                
-                let imageURL = URL(string: quizzImageStringUrl)
-                
-                if let imageURL = imageURL {
-                    if let data = try? Data(contentsOf: imageURL) {
-                        if let image = UIImage(data: data) {
-                            self.quizzImage? = image
-                        }
-                    }
-                }
-                
-            }
-            
-            if let title = quizz?.title {
-                self.quizzTitle = title
-            }
-            
-            if let description = quizz?.description {
-                self.quizzDescription = description
-            }
-            
-        }
-        
-    }
+        return image
+    }()
+    
+    let titleLabel: UILabel = {
+        let title = UILabel(frame: CGRect(x: 90, y: 20, width: 100, height: 30))
+        title.adjustsFontSizeToFitWidth = true
+        title.numberOfLines = 0
+        title.font = UIFont.boldSystemFont(ofSize: 16)
+        return title
+    }()
+    
+    let descriptionLabel: UILabel = {
+        let description = UILabel(frame: CGRect(x: 90, y: 40, width: 100, height: 30))
+        description.adjustsFontSizeToFitWidth = true
+        description.numberOfLines = 0
+        description.font = UIFont.systemFont(ofSize: 12)
+        return description
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let imageView = UIImageView(image: self.quizzImage)
-        print("postavljam sliku...")
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        addSubview(imageView)
-        
-        let quizzTitleLabel = UILabel()
-        quizzTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        quizzTitleLabel.textAlignment = .left
-        quizzTitleLabel.text = self.quizzTitle
-        print("postavljam naslov...")
-        quizzTitleLabel.textColor = .black
-        addSubview(quizzTitleLabel)
-        
-        let quizzDescriptionLabel = UILabel()
-        quizzDescriptionLabel.textColor = .black
-        quizzDescriptionLabel.text = self.quizzDescription
-        print("postavljam opis...")
-        quizzDescriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        quizzDescriptionLabel.textAlignment = .left
-        quizzDescriptionLabel.numberOfLines = 0
-        addSubview(quizzDescriptionLabel)
+        addSubview(imgView)
+        addSubview(titleLabel)
+        addSubview(descriptionLabel)
         
     }
     
@@ -76,10 +52,7 @@ class QuizzTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
