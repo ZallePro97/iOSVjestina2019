@@ -7,24 +7,24 @@
 //
 
 import UIKit
+import PureLayout
 
 class QuizzTableViewCell: UITableViewCell {
     
-    let cntntView = UIView()
-    
     let imgView: UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 20, y: 20, width: 0, height: 0))
+        let image = UIImageView(frame: CGRect(x: 10, y: 10, width: 80, height: 80))
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .white
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
+        image.layer.borderWidth = 1.0
+        image.layer.borderColor = UIColor.lightGray.cgColor
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
         return image
     }()
     
     let titleLabel: UILabel = {
-        let title = UILabel(frame: CGRect(x: 90, y: 20, width: 100, height: 30))
+        let title = UILabel()
+        title.autoSetDimensions(to: CGSize(width: 250, height: 40))
         title.adjustsFontSizeToFitWidth = true
         title.numberOfLines = 0
         title.font = UIFont.boldSystemFont(ofSize: 16)
@@ -32,7 +32,7 @@ class QuizzTableViewCell: UITableViewCell {
     }()
     
     let descriptionLabel: UILabel = {
-        let description = UILabel(frame: CGRect(x: 90, y: 40, width: 100, height: 30))
+        let description = UILabel(frame: CGRect(x: 90, y: 40, width: 250, height: 40))
         description.adjustsFontSizeToFitWidth = true
         description.numberOfLines = 0
         description.font = UIFont.systemFont(ofSize: 12)
@@ -46,6 +46,9 @@ class QuizzTableViewCell: UITableViewCell {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         
+        titleLabel.leftAnchor.constraint(equalTo: imgView.rightAnchor, constant: 8).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: 10).isActive = true
+        descriptionLabel.frame.origin.x = imgView.frame.origin.x + imgView.frame.width + 8
     }
     
     required init?(coder aDecoder: NSCoder) {
