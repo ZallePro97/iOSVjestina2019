@@ -34,22 +34,6 @@ class StartViewController: UIViewController {
         getQuestionsButtonTitle?.numberOfLines = 0
     }
     
-    
-    @IBAction func nextQuestion(_ sender: UIButton) {
-        if self.quizzes.count == 0 {
-            self.raiseAlert(message: "Click 'Get Questions' button first!")
-            return
-        }
-        
-        let randomQuizz = self.pickRandomQuizz()
-        
-        DispatchQueue.main.async {
-            self.setUI(quizz: randomQuizz)
-        }
-        
-    }
-    
-    
 
     @IBAction func getQuizzes(_ sender: UIButton) {
         
@@ -60,7 +44,6 @@ class StartViewController: UIViewController {
             DispatchQueue.main.async {
                 if let quizzes = quizzes {
                     self.quizzes = quizzes
-//                    print("Kvizovi dohvaceni!")
                     
                     var counter = 0
                     
@@ -79,32 +62,20 @@ class StartViewController: UIViewController {
                 //  dohvacanje neuspjesno
                 
                 if self.quizzes.count == 0 {
-                    self.raiseAlert(message: "Cannot connect to server")
+                    let alert = AlertException.raiseAlert(message: "Cannot connect to server")
+                    self.present(alert, animated: true, completion: nil)
                 } else {
-                    
                     // dohvacanje uspjesno
                     
                     let randomQuizz = self.pickRandomQuizz()
-                    
                     self.setUI(quizz: randomQuizz)
-                    
-                    
                 }
                 
-                sender.isEnabled = false
             }
 
         })
   
     }
-    
-    
-    func raiseAlert(message: String) {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle:UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     
     func setUI(quizz: Quizz) {
         
@@ -115,10 +86,19 @@ class StartViewController: UIViewController {
             self.quizzTitle.backgroundColor = quizz.category?.value
         }
         
-        if let quizzImage = quizz.image {
-            self.quizzImage.image = quizzImage
-            print("mjenjam sliku..")
-            self.quizzImage.backgroundColor = quizz.category?.value
+        if let quizzImageStringUrl = quizz.imageStringUrl {
+            
+            let imageURL = URL(string: quizzImageStringUrl)
+            
+            if let imageURL = imageURL {
+                if let data = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: data) {
+                        print("Dohvacam sliku")
+                        self.quizzImage.image = image
+                    }
+                }
+            }
+            
         }
         
         let question = quizz.questions[Int.random(in: 0 ... quizz.questions.count - 1)]

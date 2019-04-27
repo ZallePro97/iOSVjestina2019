@@ -16,13 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-
-        let vc = LoginViewController()
-
-        window?.rootViewController = vc
-
-        window?.makeKeyAndVisible()
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            print("IMAM TOKEN: \(token)")
+            
+            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "StartViewController") as UIViewController
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+            
+        } else {
+            
+            print("NEMAM TOKEN")
+            
+            window = UIWindow(frame: UIScreen.main.bounds)
+            
+            let vc = LoginViewController()
+            
+            window?.rootViewController = vc
+            
+            window?.makeKeyAndVisible()
+        }
 
         return true
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		36498297227322720067DFF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36498296227322720067DFF7 /* LoginViewController.swift */; };
 		36498299227338C70067DFF7 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36498298227338C70067DFF7 /* LoginService.swift */; };
+		3649829B22739FBC0067DFF7 /* AlertException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649829A22739FBC0067DFF7 /* AlertException.swift */; };
 		367FA0022259FB2400112E69 /* QuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367FA0012259FB2400112E69 /* QuestionView.xib */; };
 		367FA0042259FB7400112E69 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FA0032259FB7400112E69 /* QuestionView.swift */; };
 		36AFEC76225543A400FD4270 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFEC75225543A400FD4270 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		36498296227322720067DFF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		36498298227338C70067DFF7 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		3649829A22739FBC0067DFF7 /* AlertException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertException.swift; sourceTree = "<group>"; };
 		367FA0012259FB2400112E69 /* QuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionView.xib; sourceTree = "<group>"; };
 		367FA0032259FB7400112E69 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		36AFEC72225543A400FD4270 /* Quizzlet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzlet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 				36AFEC8C22554F6C00FD4270 /* Quizz.swift */,
 				36AFEC8E2255501500FD4270 /* Question.swift */,
 				36AFEC902255509B00FD4270 /* Category.swift */,
+				3649829A22739FBC0067DFF7 /* AlertException.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				36AFEC78225543A400FD4270 /* StartViewController.swift in Sources */,
 				36AFEC8D22554F6C00FD4270 /* Quizz.swift in Sources */,
 				367FA0042259FB7400112E69 /* QuestionView.swift in Sources */,
+				3649829B22739FBC0067DFF7 /* AlertException.swift in Sources */,
 				36498299227338C70067DFF7 /* LoginService.swift in Sources */,
 				36498297227322720067DFF7 /* LoginViewController.swift in Sources */,
 				36AFEC76225543A400FD4270 /* AppDelegate.swift in Sources */,

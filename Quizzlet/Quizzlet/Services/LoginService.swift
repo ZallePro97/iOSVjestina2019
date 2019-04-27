@@ -24,7 +24,6 @@ class LoginService {
             ]
             request.httpBody = parameters.percentEscaped().data(using: .utf8)
             
-            
             let dataTask = URLSession.shared.dataTask(with: request) { (data, response, err) in
                 
                 if let data = data {
@@ -34,16 +33,7 @@ class LoginService {
                         let json = try JSONSerialization.jsonObject(with: data, options: [])
                         
                         if let decoded = json as? [String: Any] {
-                            
-//                            if let finalData = decoded["quizzes"] as? NSArray {
-//                                let quizzes = finalData.compactMap({ (json) -> Quizz? in
-//                                    Quizz(json: json)
-//                                })
-//
-//                                completion(quizzes)
-//                            }
                             completion(decoded)
-                            
                         }
                         
                     } catch {

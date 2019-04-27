@@ -68,11 +68,37 @@ class LoginViewController: UIViewController {
     }
     
     @objc func loginButtonTapped(sender: UIButton!) {
-        sender.backgroundColor = .black
+        var userId: Int?
+        var token: String?
         
         let loginService = LoginService()
         loginService.getToken(username: emailTextField.text!, password: passwordTextField.text!) { (json) in
-            print(json)
+            userId = json["user_id"] as? Int
+            token = json["token"] as? String
+            
+            if let userId = userId, let token = token {
+                UserDefaults.standard.set(userId, forKey: "user_id")
+                UserDefaults.standard.set(token, forKey: "token")
+                
+                // provjera
+                
+                if let token = UserDefaults.standard.string(forKey: "token") {
+                    print("Token: \(token)")
+                }
+                
+                if let id = UserDefaults.standard.string(forKey: "user_id") {
+                    print("User ID: \(id)")
+                }
+                
+                // prelazak u ekran Lista Kvizova
+                
+                
+                
+            } else {
+                let alert = AlertException.raiseAlert(message: "User not found")
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         }
         
     }
@@ -94,3 +120,4 @@ extension UIViewController {
         return tap
     }
 }
+

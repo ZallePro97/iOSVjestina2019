@@ -15,7 +15,7 @@ class Quizz {
     var title: String?
     var description: String?
     var id: Int?
-    var image: UIImage?
+    var imageStringUrl: String?
     var level: Int?
     var questions: [Question] = []
     
@@ -46,16 +46,9 @@ class Quizz {
             }
             
             if let imgStr = dict["image"] as? String {
-                print("Tu sam")
-                
-                if let imgUrl = URL(string: imgStr) {
-                    self.getImageForQuizz(imageUrl: imgUrl) { (img) in
-                        self.image = img
-                    }
-                    
-                    print(imgUrl)
-                }
-                
+                self.imageStringUrl = imgStr
+            } else {
+                print("NEMAM URL SLIKE")
             }
             
             if let QUESTIONS = dict["questions"] as? NSArray {
@@ -69,17 +62,6 @@ class Quizz {
             }
             
             
-        }
-    }
-    
-    func getImageForQuizz(imageUrl: URL, completion: @escaping (UIImage) -> Void) {
-        DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: imageUrl) {
-                if let image = UIImage(data: data) {
-                    print("Dohvacam sliku")
-                    completion(image)
-                }
-            }
         }
     }
     
