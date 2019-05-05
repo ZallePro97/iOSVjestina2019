@@ -32,11 +32,20 @@ class QuizzTableViewCell: UITableViewCell {
     }()
     
     let descriptionLabel: UILabel = {
-        let description = UILabel(frame: CGRect(x: 90, y: 40, width: 250, height: 40))
+        let description = UILabel(frame: CGRect(x: 90, y: 40, width: 200, height: 40))
         description.adjustsFontSizeToFitWidth = true
         description.numberOfLines = 0
-        description.font = UIFont.systemFont(ofSize: 12)
+        description.font = UIFont.systemFont(ofSize: 14)
         return description
+    }()
+    
+    let difficultyLevel: UILabel = {
+        let difficulty = UILabel()
+        difficulty.textColor = .blue
+        difficulty.text = "***"
+        difficulty.sizeToFit()
+        
+        return difficulty
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -45,6 +54,10 @@ class QuizzTableViewCell: UITableViewCell {
         addSubview(imgView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
+        addSubview(difficultyLevel)
+        
+        difficultyLevel.frame.origin.x = descriptionLabel.frame.maxX + 50
+        difficultyLevel.frame.origin.y = descriptionLabel.frame.minY
         
         titleLabel.leftAnchor.constraint(equalTo: imgView.rightAnchor, constant: 8).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: 10).isActive = true

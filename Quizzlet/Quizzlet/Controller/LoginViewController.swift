@@ -92,7 +92,13 @@ class LoginViewController: UIViewController {
                 
                 // prelazak u ekran Lista Kvizova
                 
+                let navController = UINavigationController()
+                let vc = QuizzListTableViewController()
+                navController.addChild(vc)
                 
+                DispatchQueue.main.async {
+                    self.present(navController, animated: true, completion: nil)
+                }
                 
             } else {
                 let alert = AlertException.raiseAlert(message: "User not found")

@@ -16,14 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // TESTING LOGIN
+        
+//        UserDefaults.standard.removeObject(forKey: "token")
+        
         if let token = UserDefaults.standard.string(forKey: "token") {
             print("IMAM TOKEN: \(token)")
             
             window = UIWindow(frame: UIScreen.main.bounds)
             
+            let navController = UINavigationController()
             let vc = QuizzListTableViewController()
+            navController.addChild(vc)
             
-            window?.rootViewController = vc
+            window?.rootViewController = navController
             
             window?.makeKeyAndVisible()
             
