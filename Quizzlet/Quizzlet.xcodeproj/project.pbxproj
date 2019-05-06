@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360E8E282280423400209B0E /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E8E272280423400209B0E /* QuizzViewController.swift */; };
 		36498297227322720067DFF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36498296227322720067DFF7 /* LoginViewController.swift */; };
 		36498299227338C70067DFF7 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36498298227338C70067DFF7 /* LoginService.swift */; };
 		3649829B22739FBC0067DFF7 /* AlertException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649829A22739FBC0067DFF7 /* AlertException.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		360E8E272280423400209B0E /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
 		36498296227322720067DFF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		36498298227338C70067DFF7 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		3649829A22739FBC0067DFF7 /* AlertException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertException.swift; sourceTree = "<group>"; };
@@ -76,7 +78,6 @@
 				79A43F2C1EBFF08756B99C85 /* Pods-Quizzlet.debug.xcconfig */,
 				D6D1FFB39C5F5C68D6214D8E /* Pods-Quizzlet.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -158,6 +159,7 @@
 				36AFEC77225543A400FD4270 /* StartViewController.swift */,
 				36498296227322720067DFF7 /* LoginViewController.swift */,
 				3649829C227425450067DFF7 /* QuizzListTableViewController.swift */,
+				360E8E272280423400209B0E /* QuizzViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,6 +296,7 @@
 				36498297227322720067DFF7 /* LoginViewController.swift in Sources */,
 				36AFEC76225543A400FD4270 /* AppDelegate.swift in Sources */,
 				36AFEC8922554BDD00FD4270 /* QuizzService.swift in Sources */,
+				360E8E282280423400209B0E /* QuizzViewController.swift in Sources */,
 				36AFEC912255509B00FD4270 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

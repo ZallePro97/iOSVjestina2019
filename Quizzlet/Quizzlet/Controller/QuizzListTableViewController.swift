@@ -124,6 +124,11 @@ class QuizzListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = QuizzViewController()
+        vc.quizz = self.quizzesByCategory[indexPath.section].quizzes[indexPath.row]
+        vc.text = "hahaha"
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     
