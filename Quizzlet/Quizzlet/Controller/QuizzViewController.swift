@@ -18,7 +18,7 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImageView.newAutoLayout()
     var button = UIButton.newAutoLayout()
     
-//    var container = UIView.newAutoLayout()
+    var container = UIView.newAutoLayout()
     var scrollView = UIScrollView.newAutoLayout()
     var pageControl: UIPageControl!
     
@@ -77,63 +77,78 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         button.autoPinEdge(toSuperviewEdge: .trailing, withInset: 15)
         button.autoPinEdge(toSuperviewEdge: .leading, withInset: 15)
         
+        button.addTarget(self, action: #selector(btnStartQuizzTapped), for: .touchUpInside)
+        
+        // Container for scroll view
+        
+        container.autoSetDimension(.height, toSize: 270)
+        view.addSubview(container)
+        container.backgroundColor = .red
+        
+        container.autoPinEdge(.top, to: .bottom, of: button, withOffset: 20)
+        container.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+        container.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
+        
+        container.isHidden = true
+        
         // Scroll View
         
-        scrollView.autoSetDimension(.height, toSize: 270)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-        
+        scrollView.frame = CGRect(x: container.frame.minX, y: container.frame.minY, width: UIScreen.main.bounds.width - 40, height: 270)
+        container.addSubview(scrollView)
         scrollView.backgroundColor = .purple
-        
         scrollView.isPagingEnabled = true
         
-        scrollView.contentSize = CGSize(width: view.frame.size.width * CGFloat(quizz?.questions.count ?? 1), height: 270)
-        
-        scrollView.autoPinEdge(.top, to: .bottom, of: button, withOffset: 20)
-        scrollView.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
-        scrollView.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(quizz?.questions.count ?? 1), height: 270)
         
         
         if let quizz = self.quizz {
-            
+
             for index in 0..<quizz.questions.count {
-                
+
                 let questionView = QuestionView()
-                
-                // ovo treba ispravit
-                
+
+
                 questionView.frame.origin.x = scrollView.frame.size.width * CGFloat(index)
-                
-                //
-                
-                print(scrollView.frame.width)
-                
+
                 questionView.questionText.text = quizz.questions[index].question
                 questionView.btnA.setTitle(quizz.questions[index].answers[0], for: .normal)
                 questionView.btnB.setTitle(quizz.questions[index].answers[1], for: .normal)
                 questionView.btnC.setTitle(quizz.questions[index].answers[2], for: .normal)
                 questionView.btnD.setTitle(quizz.questions[index].answers[3], for: .normal)
-                
+
+                questionView.btnA.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                questionView.btnB.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                questionView.btnC.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                questionView.btnD.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                print("postavljam selectore")
+
                 scrollView.addSubview(questionView)
             }
-            
+
         }
         
     }
     
     
-//    @objc func buttonClicked(sender:UIButton)
-//    {
-//        checkCorrectness(sender: sender)
-//    }
-//
-//    func checkCorrectness(sender: UIButton) {
-//        if sender.titleLabel?.text == "yes" {
-//            sender.backgroundColor = UIColor.green
-//        } else {
-//            sender.backgroundColor = UIColor.red
-//        }
-//    }
+    @objc func btnStartQuizzTapped(sender: UIButton) {
+        container.isHidden = false
+        sender.isEnabled = false
+    }
+    
+    
+    @objc func buttonClicked(sender: UIButton)
+    {
+        checkCorrectness(sender: sender)
+        print("clicked")
+    }
+
+    func checkCorrectness(sender: UIButton) {
+        if sender.titleLabel?.text == "yes" {
+            sender.backgroundColor = UIColor.green
+        } else {
+            sender.backgroundColor = UIColor.red
+        }
+    }
     
     
 

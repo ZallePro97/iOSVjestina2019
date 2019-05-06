@@ -114,7 +114,7 @@ class StartViewController: UIViewController {
             UIView.transition(with: self.questionView.questionText, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.questionView.questionText.text = questionText
             }, completion: nil)
-            //
+            
         }
         
         for (index, element) in answerButtons.enumerated() {

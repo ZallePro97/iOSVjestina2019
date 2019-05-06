@@ -37,6 +37,31 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        questionText.adjustsFontSizeToFitWidth = true
+        questionText.font = questionText.font.withSize(16)
+        questionText.lineBreakMode = .byWordWrapping
+        questionText.numberOfLines = 0
+        
+        btnA.titleLabel?.adjustsFontSizeToFitWidth = true
+        btnA.titleLabel?.font = questionText.font.withSize(16)
+        btnA.titleLabel?.lineBreakMode = .byWordWrapping
+        btnA.titleLabel?.numberOfLines = 0
+        
+        btnB.titleLabel?.adjustsFontSizeToFitWidth = true
+        btnB.titleLabel?.font = questionText.font.withSize(16)
+        btnB.titleLabel?.lineBreakMode = .byWordWrapping
+        btnB.titleLabel?.numberOfLines = 0
+        
+        btnC.titleLabel?.adjustsFontSizeToFitWidth = true
+        btnC.titleLabel?.font = questionText.font.withSize(16)
+        btnC.titleLabel?.lineBreakMode = .byWordWrapping
+        btnC.titleLabel?.numberOfLines = 0
+        
+        btnD.titleLabel?.adjustsFontSizeToFitWidth = true
+        btnD.titleLabel?.font = questionText.font.withSize(14)
+        btnD.titleLabel?.lineBreakMode = .byWordWrapping
+        btnD.titleLabel?.numberOfLines = 0
+        
         addSubview(view)
     }
     
