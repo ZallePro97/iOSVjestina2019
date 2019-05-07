@@ -18,14 +18,15 @@ import UIKit
     @IBOutlet weak var btnC: UIButton!
     @IBOutlet weak var btnD: UIButton!
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print("calling programatically")
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        print("calling from nib")
         commonInit()
     }
     
@@ -37,33 +38,29 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        btnA.isEnabled = true
+        btnB.isEnabled = true
+        btnC.isEnabled = true
+        btnD.isEnabled = true
+        
         questionText.adjustsFontSizeToFitWidth = true
         questionText.font = questionText.font.withSize(16)
         questionText.lineBreakMode = .byWordWrapping
         questionText.numberOfLines = 0
         
-        btnA.titleLabel?.adjustsFontSizeToFitWidth = true
-        btnA.titleLabel?.font = questionText.font.withSize(16)
-        btnA.titleLabel?.lineBreakMode = .byWordWrapping
-        btnA.titleLabel?.numberOfLines = 0
-        
-        btnB.titleLabel?.adjustsFontSizeToFitWidth = true
-        btnB.titleLabel?.font = questionText.font.withSize(16)
-        btnB.titleLabel?.lineBreakMode = .byWordWrapping
-        btnB.titleLabel?.numberOfLines = 0
-        
-        btnC.titleLabel?.adjustsFontSizeToFitWidth = true
-        btnC.titleLabel?.font = questionText.font.withSize(16)
-        btnC.titleLabel?.lineBreakMode = .byWordWrapping
-        btnC.titleLabel?.numberOfLines = 0
-        
-        btnD.titleLabel?.adjustsFontSizeToFitWidth = true
-        btnD.titleLabel?.font = questionText.font.withSize(14)
-        btnD.titleLabel?.lineBreakMode = .byWordWrapping
-        btnD.titleLabel?.numberOfLines = 0
+        setButton(button: btnA)
+        setButton(button: btnB)
+        setButton(button: btnC)
+        setButton(button: btnD)
         
         addSubview(view)
     }
     
-
+    func setButton(button: UIButton) {
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.font = questionText.font.withSize(16)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.numberOfLines = 0
+    }
+    
 }

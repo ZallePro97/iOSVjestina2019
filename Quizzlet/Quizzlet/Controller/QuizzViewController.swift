@@ -22,10 +22,24 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
     var scrollView = UIScrollView.newAutoLayout()
     var pageControl: UIPageControl!
     
+    var questionViews: [QuestionView] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         scrollView.delegate = self
+        
+        // fix this
+        
+//        scrollView.isUserInteractionEnabled = false
+//        scrollView.isExclusiveTouch = false
+//        scrollView.canCancelContentTouches = true
+//        scrollView.delaysContentTouches = true
+//        
+//        container.isUserInteractionEnabled = false
+//        container.isExclusiveTouch = false
+        
+        //
         
         pageControl = UIPageControl()
         pageControl.numberOfPages = quizz?.questions.count ?? 1
@@ -107,7 +121,6 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
 
                 let questionView = QuestionView()
 
-
                 questionView.frame.origin.x = scrollView.frame.size.width * CGFloat(index)
 
                 questionView.questionText.text = quizz.questions[index].question
@@ -115,16 +128,19 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
                 questionView.btnB.setTitle(quizz.questions[index].answers[1], for: .normal)
                 questionView.btnC.setTitle(quizz.questions[index].answers[2], for: .normal)
                 questionView.btnD.setTitle(quizz.questions[index].answers[3], for: .normal)
-
-                questionView.btnA.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                questionView.btnB.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                questionView.btnC.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                questionView.btnD.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                print("postavljam selectore")
-
+                
+                questionViews.append(questionView)
+                
                 scrollView.addSubview(questionView)
             }
 
+        }
+        
+        for qw in questionViews {
+            qw.btnA.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+            qw.btnB.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+            qw.btnC.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+            qw.btnD.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         }
         
     }
@@ -150,6 +166,8 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
 
 }
