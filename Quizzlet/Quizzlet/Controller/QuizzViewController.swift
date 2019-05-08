@@ -157,26 +157,10 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         if sender.titleLabel?.text == quizz?.questions[page].answers[(quizz?.questions[page].correctAnswer)!] {
             sender.backgroundColor = UIColor.green
             correctAnswers += 1
-            
-            DispatchQueue.main.async {
-                
-                if (page < self.questionViews.count - 1) {
-                    UIView.animate(withDuration: 2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-                        self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
-                    }, completion: nil)
-                }
-                
-            }
+            scrollQuestion(page: page)
         } else {
             sender.backgroundColor = UIColor.red
-            
-            if (page < self.questionViews.count - 1) {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-                        self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
-                    }, completion: nil)
-                }
-            }
+            scrollQuestion(page: page)
         }
     }
     
@@ -184,6 +168,14 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         print(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 
-    
+    func scrollQuestion(page: Int) {
+        if (page < self.questionViews.count - 1) {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                    self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
+                }, completion: nil)
+            }
+        }
+    }
     
 }
