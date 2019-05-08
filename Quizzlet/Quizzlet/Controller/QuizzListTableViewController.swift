@@ -127,7 +127,6 @@ class QuizzListTableViewController: UITableViewController {
         
         let vc = QuizzViewController()
         vc.quizz = self.quizzesByCategory[indexPath.section].quizzes[indexPath.row]
-        vc.text = "hahaha"
         navigationController?.pushViewController(vc, animated: true)
     }
 

@@ -12,7 +12,6 @@ import PureLayout
 class QuizzViewController: UIViewController, UIScrollViewDelegate {
     
     var quizz: Quizz?
-    var text: String?
     
     var label = UILabel.newAutoLayout()
     var image = UIImageView.newAutoLayout()
@@ -22,24 +21,16 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
     var scrollView = UIScrollView.newAutoLayout()
     var pageControl: UIPageControl!
     
-    var questionViews: [QuestionView] = []
+    var questionViews: [QuestionViewProgrammatically] = []
+    
+    var correctAnswers: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         scrollView.delegate = self
         
-        // fix this
-        
-//        scrollView.isUserInteractionEnabled = false
-//        scrollView.isExclusiveTouch = false
-//        scrollView.canCancelContentTouches = true
-//        scrollView.delaysContentTouches = true
-//        
-//        container.isUserInteractionEnabled = false
-//        container.isExclusiveTouch = false
-        
-        //
+        scrollView.isScrollEnabled = false
         
         pageControl = UIPageControl()
         pageControl.numberOfPages = quizz?.questions.count ?? 1
@@ -119,11 +110,12 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
 
             for index in 0..<quizz.questions.count {
 
-                let questionView = QuestionView()
+                let questionView = QuestionViewProgrammatically()
 
                 questionView.frame.origin.x = scrollView.frame.size.width * CGFloat(index)
 
                 questionView.questionText.text = quizz.questions[index].question
+                
                 questionView.btnA.setTitle(quizz.questions[index].answers[0], for: .normal)
                 questionView.btnB.setTitle(quizz.questions[index].answers[1], for: .normal)
                 questionView.btnC.setTitle(quizz.questions[index].answers[2], for: .normal)
@@ -137,10 +129,10 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         }
         
         for qw in questionViews {
-            qw.btnA.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-            qw.btnB.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-            qw.btnC.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-            qw.btnD.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+            qw.btnA.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+            qw.btnB.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+            qw.btnC.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+            qw.btnD.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         }
         
     }
@@ -157,12 +149,34 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         checkCorrectness(sender: sender)
         print("clicked")
     }
+    
 
     func checkCorrectness(sender: UIButton) {
-        if sender.titleLabel?.text == "yes" {
+        let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        
+        if sender.titleLabel?.text == quizz?.questions[page].answers[(quizz?.questions[page].correctAnswer)!] {
             sender.backgroundColor = UIColor.green
+            correctAnswers += 1
+            
+            DispatchQueue.main.async {
+                
+                if (page < self.questionViews.count - 1) {
+                    UIView.animate(withDuration: 2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                        self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
+                    }, completion: nil)
+                }
+                
+            }
         } else {
             sender.backgroundColor = UIColor.red
+            
+            if (page < self.questionViews.count - 1) {
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                        self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
+                    }, completion: nil)
+                }
+            }
         }
     }
     
@@ -170,4 +184,6 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         print(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 
+    
+    
 }

@@ -24,6 +24,7 @@
 		36AFEC8D22554F6C00FD4270 /* Quizz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFEC8C22554F6C00FD4270 /* Quizz.swift */; };
 		36AFEC8F2255501500FD4270 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFEC8E2255501500FD4270 /* Question.swift */; };
 		36AFEC912255509B00FD4270 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFEC902255509B00FD4270 /* Category.swift */; };
+		36DB08DF228374370078ABE3 /* QuestionViewProgrammatically.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB08DE228374370078ABE3 /* QuestionViewProgrammatically.swift */; };
 		48AA145CBF626E031E32531F /* Pods_Quizzlet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99888ADC9145CA27E27B3CF8 /* Pods_Quizzlet.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		36AFEC8C22554F6C00FD4270 /* Quizz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quizz.swift; sourceTree = "<group>"; };
 		36AFEC8E2255501500FD4270 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		36AFEC902255509B00FD4270 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		36DB08DE228374370078ABE3 /* QuestionViewProgrammatically.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewProgrammatically.swift; sourceTree = "<group>"; };
 		79A43F2C1EBFF08756B99C85 /* Pods-Quizzlet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzlet.debug.xcconfig"; path = "Target Support Files/Pods-Quizzlet/Pods-Quizzlet.debug.xcconfig"; sourceTree = "<group>"; };
 		99888ADC9145CA27E27B3CF8 /* Pods_Quizzlet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quizzlet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D1FFB39C5F5C68D6214D8E /* Pods-Quizzlet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzlet.release.xcconfig"; path = "Target Support Files/Pods-Quizzlet/Pods-Quizzlet.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				367FA0012259FB2400112E69 /* QuestionView.xib */,
 				367FA0032259FB7400112E69 /* QuestionView.swift */,
+				36DB08DE228374370078ABE3 /* QuestionViewProgrammatically.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				36AFEC8D22554F6C00FD4270 /* Quizz.swift in Sources */,
 				367FA0042259FB7400112E69 /* QuestionView.swift in Sources */,
 				3649829D227425450067DFF7 /* QuizzListTableViewController.swift in Sources */,
+				36DB08DF228374370078ABE3 /* QuestionViewProgrammatically.swift in Sources */,
 				3649829B22739FBC0067DFF7 /* AlertException.swift in Sources */,
 				36498299227338C70067DFF7 /* LoginService.swift in Sources */,
 				36498297227322720067DFF7 /* LoginViewController.swift in Sources */,
