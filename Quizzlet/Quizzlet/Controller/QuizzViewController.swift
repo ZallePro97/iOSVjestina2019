@@ -49,32 +49,6 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         setUI()
     }
     
-    @objc func getResultsTapped(sender: UIButton) {
-        print("tapnuto")
-        
-        let getResultsService = GetResultsService()
-        getResultsService.getResults(quizzId: (quizz?.id)!) { (results) in
-            
-            if let results = results {
-                
-                results.forEach({ (result) in
-                    print("USERNAME: \(result.username)")
-                    print("SCORE: \(result.score)")
-                    print("\n")
-                })
-                
-                let vc = TopQuizzResultTableViewController()
-                vc.userResults = results
-                
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                
-            }
-            
-        }
-    }
-    
     
     func setUI() {
         
@@ -240,6 +214,38 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
                     self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width / CGFloat(self.questionViews.count) * CGFloat(page + 1), y: 0), animated: true)
                 }, completion: nil)
             }
+        }
+    }
+    
+}
+
+
+
+extension QuizzViewController {
+    
+    @objc func getResultsTapped(sender: UIButton) {
+        print("tapnuto")
+        
+        let getResultsService = GetResultsService()
+        getResultsService.getResults(quizzId: (quizz?.id)!) { (results) in
+            
+            if let results = results {
+                
+                results.forEach({ (result) in
+                    print("USERNAME: \(result.username)")
+                    print("SCORE: \(result.score)")
+                    print("\n")
+                })
+                
+                let vc = TopQuizzResultTableViewController()
+                vc.userResults = results
+                
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+            }
+            
         }
     }
     
