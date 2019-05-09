@@ -26,7 +26,6 @@ class QuizzListTableViewController: UITableViewController {
         navigationItem.title = "Quizzes"
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 126/255, green: 127/255, blue: 227/255, alpha: 1)
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         self.tableView.separatorStyle = .none
         
@@ -40,8 +39,6 @@ class QuizzListTableViewController: UITableViewController {
                 if let quizzes = quizzes {
                     self.quizzes = quizzes
                     self.fillQuizzesByCategories()
-                    print("Dohvacanje kvizova uspjesno")
-                    print("Kvizovi: \(quizzes)")
                     
                     self.tableView.delegate = self
                     self.tableView.dataSource = self
@@ -154,7 +151,6 @@ class QuizzListTableViewController: UITableViewController {
     
     
     @objc func logoutButtonTapped(sender: UIButton!) {
-        print("TAPNUTO")
         UserDefaults.standard.removeObject(forKey: "token")
         
         self.present(LoginViewController(), animated: true, completion: nil)

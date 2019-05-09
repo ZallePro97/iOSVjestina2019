@@ -79,7 +79,7 @@ class Quizz {
                 if let data = try? Data(contentsOf: imageURL) {
                     if let image = UIImage(data: data) {
                         completion(image)
-                        print("Slika skinuta!")
+//                        print("Slika skinuta!")
                     }
                 }
             }

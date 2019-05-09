@@ -13,6 +13,8 @@ class QuestionViewProgrammatically: UIView {
     
     var questionText = UILabel.newAutoLayout()
     
+    var view = UIView.newAutoLayout()
+    
     var btnA: UIButton!
     var btnB: UIButton!
     var btnC: UIButton!
@@ -29,8 +31,7 @@ class QuestionViewProgrammatically: UIView {
     
     private func setupView() {
         self.backgroundColor = UIColor.blue
-        self.frame = CGRect(x: 0, y: 0, width: 342, height: 283)
-        
+    
         questionText = UILabel(frame: CGRect(x: 37, y: 20, width: 269, height: 88))
         questionText.backgroundColor = .purple
         questionText.textColor = .white
