@@ -38,7 +38,7 @@ class GetResultsService {
                                 let user = dict["username"] as! String
                                 let score = Double(dict["score"] as! String)
                                 
-                                results.append(UserResult(score: score, username: user))
+                                results.append(UserResult(score: score!, username: user))
                             }
                             
                             completion(results)
@@ -60,13 +60,6 @@ class GetResultsService {
         }
         
     }
-    
-    
-    struct UserResult {
-        var score: Double!
-        var username: String!
-    }
-
     
 }
 

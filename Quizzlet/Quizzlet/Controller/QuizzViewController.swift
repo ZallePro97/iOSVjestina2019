@@ -32,6 +32,8 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.title = "Quizz"
+        
         scrollView.delegate = self
         
         scrollView.isScrollEnabled = false
@@ -55,13 +57,18 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
             
             if let results = results {
                 
-                // tu mi se nalaze najbolji rezultati kviza, dalje sad napravit table view itd
-                
                 results.forEach({ (result) in
-                    print("USERNAME: \(result.username!)")
-                    print("SCORE: \(result.score!)")
+                    print("USERNAME: \(result.username)")
+                    print("SCORE: \(result.score)")
                     print("\n")
                 })
+                
+                let vc = TopQuizzResultTableViewController()
+                vc.userResults = results
+                
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 
             }
             
