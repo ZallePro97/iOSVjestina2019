@@ -24,21 +24,19 @@ class SendResultService {
                 request.addValue(token, forHTTPHeaderField: "Authorization")
             }
             
-            let parameters: [String: Any] = [
-                                "quizz_id": quizzId,
-                                "user_id": userId,
-                                "time": time,
-                                "no_of_correct": numberOfCorrectAnswers
-                            ]
-            request.httpBody = parameters.percentEscaped().data(using: .utf8)
+            let params = ["quiz_id" : quizzId, "user_id": userId, "time": time, "no_of_correct": numberOfCorrectAnswers] as [String : Any]
+            
+            do{
+                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            } catch {
+                print("Error sending data")
+            }
             
             let dataTask = URLSession.shared.dataTask(with: request) { (data, response, err) in
-                
-                if let data = data {
-                    let response = response as! HTTPURLResponse
-                    let serverResponse = ServerResponse(rawValue: response.statusCode)
-                    
-                    completion(serverResponse!)
+                let response = response as! HTTPURLResponse
+                if let serverResponse = ServerResponse(rawValue: response.statusCode) {
+                    print("Saljem odgovor!")
+                    completion(serverResponse)
                 }
                 
             }

@@ -182,20 +182,26 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
             if let end = end, let start = start {
                 let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
                 time = Double(nanoTime) / 1_000_000_000
-//                print(time)
-//                print(correctAnswers)
                 
                 let sendResultService = SendResultService()
-                print(quizz?.id)
-                print(time)
-                print(correctAnswers)
-                print(UserDefaults.standard.integer(forKey: "user_id"))
                 
                 sendResultService.sendResult(quizzId: (quizz?.id)!, userId: UserDefaults.standard.integer(forKey: "user_id"), time: time!, numberOfCorrectAnswers: correctAnswers) { (serverResponse) in
-                    print(serverResponse.rawValue)
                     
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        print(serverResponse.rawValue)
+                        
+                        if serverResponse == ServerResponse.OK {
+                            print("Server response: \(serverResponse) \(serverResponse.rawValue)")
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            let alert = AlertException.raiseAlert(message: "Error sending data")
+                            let action: UIAlertAction = UIAlertAction(title: "Send again", style: .default) { (action) in
+                                self.checkCorrectness(sender: sender)
+                            }
+                            alert.addAction(action)
+                            self.present(alert, animated: true)
+                        }
+                        
                     }
                     
                 }
@@ -249,4 +255,12 @@ extension QuizzViewController {
         }
     }
     
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }

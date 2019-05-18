@@ -153,7 +153,11 @@ class QuizzListTableViewController: UITableViewController {
     @objc func logoutButtonTapped(sender: UIButton!) {
         UserDefaults.standard.removeObject(forKey: "token")
         
-        self.present(LoginViewController(), animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+            self.present(LoginViewController(), animated: true, completion: nil)
+        }
+        
     }
     
     // set height for footer

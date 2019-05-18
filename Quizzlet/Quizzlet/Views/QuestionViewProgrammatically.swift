@@ -13,8 +13,6 @@ class QuestionViewProgrammatically: UIView {
     
     var questionText = UILabel.newAutoLayout()
     
-    var view = UIView.newAutoLayout()
-    
     var btnA: UIButton!
     var btnB: UIButton!
     var btnC: UIButton!
