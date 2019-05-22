@@ -142,6 +142,20 @@ class QuizzListTableViewController: UITableViewController {
         cell.titleLabel.text = quizzesByCategory[indexPath.section].quizzes[indexPath.row].title
         cell.descriptionLabel.text = quizzesByCategory[indexPath.section].quizzes[indexPath.row].description
         
+        let difficultyLevel = quizzesByCategory[indexPath.section].quizzes[indexPath.row].level
+        
+        switch difficultyLevel {
+        case 1:
+            cell.difficultyLevel.text = "*"
+        case 2:
+            cell.difficultyLevel.text = "**"
+        case 3:
+            cell.difficultyLevel.text = "***"
+        default:
+            cell.difficultyLevel.text = "*"
+        }
+        
+        
         return cell
     }
 
