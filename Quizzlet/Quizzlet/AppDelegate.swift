@@ -25,11 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             window = UIWindow(frame: UIScreen.main.bounds)
             
-            let navController = UINavigationController()
-            let vc = QuizzListTableViewController()
-            navController.addChild(vc)
+//            let navController = UINavigationController()
+//            let vc = QuizzListTableViewController()
+//            navController.addChild(vc)
+//
+//            window?.rootViewController = navController
             
-            window?.rootViewController = navController
+            let tabBarController = TabBarControllerViewController()
+            window?.rootViewController = tabBarController
             
             window?.makeKeyAndVisible()
             

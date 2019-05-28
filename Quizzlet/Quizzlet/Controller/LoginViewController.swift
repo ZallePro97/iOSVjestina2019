@@ -92,12 +92,15 @@ class LoginViewController: UIViewController {
                 
                 // prelazak u ekran Lista Kvizova
                 
-                let navController = UINavigationController()
-                let vc = QuizzListTableViewController()
-                navController.addChild(vc)
+//                let navController = UINavigationController()
+//                let vc = QuizzListTableViewController()
+//                navController.addChild(vc)
+                
+                let tabBarController = TabBarControllerViewController()
+//                navController.addChild(tabBarController)
                 
                 DispatchQueue.main.async {
-                    self.present(navController, animated: true, completion: nil)
+                    self.present(tabBarController, animated: true, completion: nil)
                 }
                 
             } else {
