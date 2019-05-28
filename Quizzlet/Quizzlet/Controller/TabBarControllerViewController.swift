@@ -17,9 +17,14 @@ class TabBarControllerViewController: UITabBarController {
         let quizzListVC = QuizzListTableViewController()
         navController.addChild(quizzListVC)
         
-        quizzListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
+        quizzListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        quizzListVC.tabBarItem.title = "Quizzess"
         
-        let tabBarList = [navController]
+        let settingsVC = SettingsViewController()
+        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        settingsVC.tabBarItem.title = "Settings"
+        
+        let tabBarList = [navController, settingsVC]
         
         viewControllers = tabBarList
     }

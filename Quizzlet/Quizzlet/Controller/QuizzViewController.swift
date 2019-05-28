@@ -235,21 +235,23 @@ extension QuizzViewController {
         let getResultsService = GetResultsService()
         getResultsService.getResults(quizzId: (quizz?.id)!) { (results) in
             
-            if let results = results {
-                
-                results.forEach({ (result) in
-                    print("USERNAME: \(result.username)")
-                    print("SCORE: \(result.score)")
-                    print("\n")
-                })
-                
-                let vc = TopQuizzResultTableViewController()
-                vc.userResults = results
-                
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(vc, animated: true)
+            DispatchQueue.main.async {
+                if let results = results {
+                    
+                    results.forEach({ (result) in
+                        print("USERNAME: \(result.username)")
+                        print("SCORE: \(result.score)")
+                        print("\n")
+                    })
+                    
+                    let vc = TopQuizzResultTableViewController()
+                    vc.userResults = results
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
                 }
-                
             }
             
         }

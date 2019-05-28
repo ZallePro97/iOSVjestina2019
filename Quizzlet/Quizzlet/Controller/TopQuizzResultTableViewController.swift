@@ -16,14 +16,25 @@ class TopQuizzResultTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationController?.navigationItem.title = "Top 20 Results"
+        navigationItem.setHidesBackButton(true, animated: true)
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.separatorStyle = .none
         
+        let dismissButton = UIBarButtonItem(title: "Dismiss", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissTapped))
+        
+        self.navigationItem.rightBarButtonItem = dismissButton
+        
         tableView.register(TopResultTableViewCell.self, forCellReuseIdentifier: "TopResultTableViewCell")
         
+    }
+    
+    @objc func dismissTapped() {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     // MARK: - Table view data source

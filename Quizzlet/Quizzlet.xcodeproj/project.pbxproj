@@ -14,6 +14,7 @@
 		3649829D227425450067DFF7 /* QuizzListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649829C227425450067DFF7 /* QuizzListTableViewController.swift */; };
 		364982A02274259A0067DFF7 /* QuizzTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649829F2274259A0067DFF7 /* QuizzTableViewCell.swift */; };
 		365E9863229D936900740866 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E9862229D936900740866 /* TabBarControllerViewController.swift */; };
+		365E9865229D9C9A00740866 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E9864229D9C9A00740866 /* SettingsViewController.swift */; };
 		36692508228EAEA600BDCF7D /* QuestionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36692507228EAEA600BDCF7D /* QuestionViewLayout.swift */; };
 		367FA0022259FB2400112E69 /* QuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367FA0012259FB2400112E69 /* QuestionView.xib */; };
 		367FA0042259FB7400112E69 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FA0032259FB7400112E69 /* QuestionView.swift */; };
@@ -44,6 +45,7 @@
 		3649829C227425450067DFF7 /* QuizzListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzListTableViewController.swift; sourceTree = "<group>"; };
 		3649829F2274259A0067DFF7 /* QuizzTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzTableViewCell.swift; sourceTree = "<group>"; };
 		365E9862229D936900740866 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
+		365E9864229D9C9A00740866 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		36692507228EAEA600BDCF7D /* QuestionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewLayout.swift; sourceTree = "<group>"; };
 		367FA0012259FB2400112E69 /* QuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionView.xib; sourceTree = "<group>"; };
 		367FA0032259FB7400112E69 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				360E8E272280423400209B0E /* QuizzViewController.swift */,
 				36AA7FAA2284B14600D9A2D8 /* TopQuizzResultTableViewController.swift */,
 				365E9862229D936900740866 /* TabBarControllerViewController.swift */,
+				365E9864229D9C9A00740866 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				36AA7FAD2284B17000D9A2D8 /* UserResult.swift in Sources */,
 				36498299227338C70067DFF7 /* LoginService.swift in Sources */,
 				36498297227322720067DFF7 /* LoginViewController.swift in Sources */,
+				365E9865229D9C9A00740866 /* SettingsViewController.swift in Sources */,
 				36AFEC76225543A400FD4270 /* AppDelegate.swift in Sources */,
 				36AA7FA922849C8800D9A2D8 /* GetResultsService.swift in Sources */,
 				36AA7FAF2284BEE000D9A2D8 /* TopResultTableViewCell.swift in Sources */,

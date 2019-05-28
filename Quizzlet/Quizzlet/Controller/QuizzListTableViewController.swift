@@ -66,7 +66,7 @@ class QuizzListTableViewController: UITableViewController {
         logoutBtn.layer.cornerRadius = 15
         logoutBtn.layer.borderWidth = 1
         logoutBtn.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        footerView.addSubview(logoutBtn)
+//        footerView.addSubview(logoutBtn)
         
         tableView.tableFooterView = footerView
     }

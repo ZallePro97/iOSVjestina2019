@@ -73,40 +73,44 @@ class LoginViewController: UIViewController {
         
         let loginService = LoginService()
         loginService.getToken(username: emailTextField.text!, password: passwordTextField.text!) { (json) in
-            userId = json["user_id"] as? Int
-            token = json["token"] as? String
             
-            if let userId = userId, let token = token {
-                UserDefaults.standard.set(userId, forKey: "user_id")
-                UserDefaults.standard.set(token, forKey: "token")
+            DispatchQueue.main.async {
+                userId = json["user_id"] as? Int
+                token = json["token"] as? String
                 
-                // provjera
-                
-                if let token = UserDefaults.standard.string(forKey: "token") {
-                    print("Token: \(token)")
-                }
-                
-                if let id = UserDefaults.standard.string(forKey: "user_id") {
-                    print("User ID: \(id)")
-                }
-                
-                // prelazak u ekran Lista Kvizova
-                
-//                let navController = UINavigationController()
-//                let vc = QuizzListTableViewController()
-//                navController.addChild(vc)
-                
-                let tabBarController = TabBarControllerViewController()
-//                navController.addChild(tabBarController)
-                
-                DispatchQueue.main.async {
+                if let userId = userId, let token = token {
+                    UserDefaults.standard.set(userId, forKey: "user_id")
+                    UserDefaults.standard.set(token, forKey: "token")
+                    
+                    UserDefaults.standard.set(self.emailTextField.text, forKey: "username")
+                    
+                    // provjera
+                    
+                    if let token = UserDefaults.standard.string(forKey: "token") {
+                        print("Token: \(token)")
+                    }
+                    
+                    if let id = UserDefaults.standard.string(forKey: "user_id") {
+                        print("User ID: \(id)")
+                    }
+                    
+                    // prelazak u ekran Lista Kvizova
+                    
+                    //                let navController = UINavigationController()
+                    //                let vc = QuizzListTableViewController()
+                    //                navController.addChild(vc)
+                    
+                    let tabBarController = TabBarControllerViewController()
+                    //                navController.addChild(tabBarController)
+
                     self.present(tabBarController, animated: true, completion: nil)
+                } else {
+                    let alert = AlertException.raiseAlert(message: "User not found")
+                    self.present(alert, animated: true, completion: nil)
                 }
-                
-            } else {
-                let alert = AlertException.raiseAlert(message: "User not found")
-                self.present(alert, animated: true, completion: nil)
             }
+            
+            
             
         }
         
