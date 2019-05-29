@@ -23,6 +23,7 @@ extension Quizzes {
     @NSManaged public var level: Int16
     @NSManaged public var image: NSData?
     @NSManaged public var category: String?
+    @NSManaged public var completed: Bool
     @NSManaged public var questions: NSSet?
 
 }

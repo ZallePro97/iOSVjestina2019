@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import CoreData
 
 class QuizzViewController: UIViewController, UIScrollViewDelegate {
     
@@ -150,6 +151,42 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
     
     
     @objc func btnStartQuizzTapped(sender: UIButton) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Quizzes")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let quizzes = try context.fetch(request)
+            
+            for quizz in quizzes as! [NSManagedObject] {
+                let id = quizz.value(forKey: "id") as! Int
+                
+                if self.quizz?.id == id {
+                    
+                    let completed = quizz.value(forKey: "completed") as! Bool
+                    
+                    if completed {
+                      
+                        let alert = AlertException.raiseAlert(message: "Quizz already completed!")
+                        DispatchQueue.main.async {
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        
+                        return
+                    }
+                    
+                }
+                
+            }
+            
+        } catch {
+            
+        }
+        
         container.isHidden = false
         sender.isEnabled = false
         start = DispatchTime.now()
@@ -206,6 +243,37 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
                     
                 }
                 
+                
+            }
+            
+            /// tu ide mjenjanje booleana
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Quizzes")
+            
+            request.returnsObjectsAsFaults = false
+            
+            do {
+                let quizzes = try context.fetch(request)
+                
+                for quizz in quizzes as! [NSManagedObject] {
+                    let id = quizz.value(forKey: "id") as! Int
+                    
+                    if self.quizz?.id == id {
+                        
+                        quizz.setValue(true, forKey: "completed")
+                        print("Postavljam zastavicu rjesenosti")
+                        try context.save()
+                        
+                        print(quizz)
+                        break
+                    }
+                    
+                }
+                
+            } catch {
                 
             }
             
