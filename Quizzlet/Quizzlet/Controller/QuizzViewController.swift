@@ -238,11 +238,11 @@ extension QuizzViewController {
             DispatchQueue.main.async {
                 if let results = results {
                     
-                    results.forEach({ (result) in
-                        print("USERNAME: \(result.username)")
-                        print("SCORE: \(result.score)")
-                        print("\n")
-                    })
+//                    results.forEach({ (result) in
+//                        print("USERNAME: \(result.username)")
+//                        print("SCORE: \(result.score)")
+//                        print("\n")
+//                    })
                     
                     let vc = TopQuizzResultTableViewController()
                     vc.userResults = results

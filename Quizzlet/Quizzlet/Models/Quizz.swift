@@ -20,6 +20,9 @@ class Quizz {
     var level: Int?
     var questions: [Question] = []
     
+    init() {
+    }
+    
     init?(json: Any) {
         
         if let dict = json as? [String: Any] {
