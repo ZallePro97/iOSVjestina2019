@@ -159,28 +159,20 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
         
         request.returnsObjectsAsFaults = false
         
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "id = %i", (quizz?.id)!)
+        
         do {
-            let quizzes = try context.fetch(request)
+            let q = try context.fetch(request) as! [Quizzes]
             
-            for quizz in quizzes as! [NSManagedObject] {
-                let id = quizz.value(forKey: "id") as! Int
-                
-                if self.quizz?.id == id {
-                    
-                    let completed = quizz.value(forKey: "completed") as! Bool
-                    
-                    if completed {
-                      
-                        let alert = AlertException.raiseAlert(message: "Quizz already completed!")
-                        DispatchQueue.main.async {
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                        
-                        return
-                    }
-                    
+            let qq = q[0]
+            
+            if qq.completed {
+                let alert = AlertException.raiseAlert(message: "Quiz already completed!")
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
                 }
-                
+                return
             }
             
         } catch {
@@ -267,7 +259,6 @@ class QuizzViewController: UIViewController, UIScrollViewDelegate {
                         print("Postavljam zastavicu rjesenosti")
                         try context.save()
                         
-                        print(quizz)
                         break
                     }
                     
